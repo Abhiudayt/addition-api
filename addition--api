@@ -1,0 +1,20 @@
+from flask import Flask, request, jsonify
+
+app = Flask(__name__)
+
+# API endpoint for adding two numbers
+@app.route('/add', methods=['GET'])
+def add_numbers():
+    # Get numbers from URL parameters
+    num1 = request.args.get('num1', default=0, type=int)
+    num2 = request.args.get('num2', default=0, type=int)
+
+    # Perform the addition
+    result = num1 + num2
+    
+    # Return result as JSON response
+    return jsonify({'result': result})
+
+# Run the Flask app
+if __name__ == '__main__':
+    app.run(debug=True)
